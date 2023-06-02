@@ -8,74 +8,19 @@ import { FormLink, FormWrapper, FormLoading, FormError } from "../Form";
 import { ForgotPassword } from "./style";
 import Button from "../Button";
 import TextField from "../TextField";
+import useLoginSubmit from "@hooks/useLoginSubmit";
 import { signInValidate } from "./../../utils/validations";
 
 const FormSignIn = ({ setShowModal, setShowLoginForm }) => {
+  const { handleSubmit, submitHandler, register, errors, loading } =
+    useLoginSubmit(setShowModal);
   const [formError, setFormError] = useState("");
-  const [fieldError, setFieldError] = useState({});
   const [values, setValues] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
   const routes = useRouter();
   const { push, query } = routes;
 
   const handleInput = (field, value) => {
     setValues((s) => ({ ...s, [field]: value }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-
-    const result = await signIn("credentials", {
-      ...values,
-      redirect: false,
-      callbackUrl: `${window.location.origin}${query?.callbackUrl || ""}`,
-    });
-
-    if (result?.url) {
-      return push(result?.url);
-    }
-
-    setLoading(false);
-
-    const errors = signInValidate(values);
-
-    if (Object.keys(errors).length) {
-      setFieldError(errors);
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Houve um problema com a requisição");
-      }
-
-      const data = await response.json();
-
-      if (data.error) {
-        setFormError(data.error);
-      } else {
-        setShowModal(false);
-      }
-    } catch (err) {
-      setFormError(err.message);
-    }
-
-    setFieldError({});
-
-    setFormError("Usuário ou senha inválidos");
   };
 
   const handleSignUpClick = useCallback(
@@ -94,21 +39,23 @@ const FormSignIn = ({ setShowModal, setShowLoginForm }) => {
           <ErrorOutline /> {formError}
         </FormError>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(submitHandler)}>
         <TextField
-          name="email"
+          name="registerEmail"
+          register={register}
           placeholder="Email"
           type="email"
-          error={fieldError?.email}
-          onInputChange={(v) => handleInput("email", v)}
+          error={errors.registerEmail}
+          onInputChange={(value) => handleInput("registerEmail", value)}
           icon={<Email className="icon" />}
         />
         <TextField
           name="password"
+          register={register}
           placeholder="Password"
           type="password"
-          error={fieldError?.password}
-          onInputChange={(v) => handleInput("password", v)}
+          error={errors.password}
+          onInputChange={(value) => handleInput("password", value)}
           icon={<Lock className="icon" />}
         />
 

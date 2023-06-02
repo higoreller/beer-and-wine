@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Email, Lock, ErrorOutline } from "@styled-icons/material-outlined";
+import { Email, Lock, Person } from "@styled-icons/material-outlined";
 import { useCallback } from "react";
 
 import { FormLink, FormWrapper, FormLoading, FormError } from "../Form";
@@ -7,42 +7,57 @@ import Button from "../Button";
 import TextField from "../TextField";
 import useLoginSubmit from "@hooks/useLoginSubmit";
 
-const FormSignIn = ({ setShowModal }) => {
+const FormSignUp = ({ setShowModal, setShowLoginForm }) => {
   const { handleSubmit, submitHandler, register, errors, loading } =
-    useLoginSubmit({ setShowModal });
+    useLoginSubmit(setShowModal);
+
+  const handleSignInClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      setShowModal(true);
+      setShowLoginForm(true);
+    },
+    [setShowModal, setShowLoginForm]
+  );
 
   return (
     <FormWrapper>
-      {errors.registerEmail && (
-        <FormError>{errors.registerEmail.message}</FormError>
-      )}
-      {errors.password && <FormError>{errors.password.message}</FormError>}
+      {errors.email && <FormError>{errors.email}</FormError>}
+      {errors.password && <FormError>{errors.password}</FormError>}
       <form onSubmit={handleSubmit(submitHandler)}>
         <TextField
-          name="registerEmail"
+          name="name"
+          register={register}
+          placeholder="Nome"
+          type="text"
+          error={errors.name}
+          icon={<Person className="icon" />}
+        />
+        <TextField
+          name="email"
+          register={register}
           placeholder="Email"
           type="email"
-          error={errors.registerEmail}
-          {...register("registerEmail")}
+          error={errors.email}
           icon={<Email className="icon" />}
         />
         <TextField
           name="password"
+          register={register}
           placeholder="Password"
           type="password"
           error={errors.password}
-          {...register("password")}
           icon={<Lock className="icon" />}
         />
 
         <Button type="submit" size="large" fullWidth disabled={loading}>
-          {loading ? <FormLoading /> : <span>Entrar agora</span>}
+          {loading ? <FormLoading /> : <span>Cadastrar</span>}
         </Button>
 
         <FormLink>
-          Não tem uma conta?{" "}
+          Já tem uma conta?{" "}
           <Link href="/" legacyBehavior>
-            <a>Cadastrar</a>
+            <a onClick={handleSignInClick}>Entrar</a>
           </Link>
         </FormLink>
       </form>
@@ -50,4 +65,4 @@ const FormSignIn = ({ setShowModal }) => {
   );
 };
 
-export default FormSignIn;
+export default FormSignUp;

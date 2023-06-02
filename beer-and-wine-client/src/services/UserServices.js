@@ -5,8 +5,8 @@ const UserServices = {
     return requests.post("/user/login", body);
   },
 
-  userRegister(token, body) {
-    return requests.post(`/user/register/${token}`, body);
+  userRegister(body) {
+    return requests.post("/user/register", body);
   },
 };
 

@@ -10,6 +10,7 @@ import {
 
 const TextField = ({
   name,
+  register,
   label,
   initialValue = "",
   icon,
@@ -42,6 +43,9 @@ const TextField = ({
         <Input
           type="text"
           name={name}
+          {...register(`${name}`, {
+            required: `${label} is required!`,
+          })}
           value={value}
           onChange={handleChange}
           disabled={disabled}
