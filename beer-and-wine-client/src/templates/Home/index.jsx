@@ -1,21 +1,32 @@
-import Container from "./../../components/Container";
-import Footer from "./../../components/Footer";
-import Navbar from "./../../components/Navbar";
-import GridSection from "./../../components/GridSection";
+import Footer from "@component/Footer";
+import Navbar from "@component/Navbar";
+import GridSection from "@component/GridSection";
+import ImageSlider from "@component/ImageSlider";
+import Heading from "@component/Heading";
 import Sticky from "react-stickynode";
-
-import { useSession } from "next-auth/react";
+import { useContext } from "react";
+import { UserContext } from "@context/UserContext";
+import { images } from "@component/ImageSlider/mock";
 import * as S from "./style";
 
 const Home = () => {
-  const { data: session } = useSession();
+  const {
+    state: { userInfo },
+  } = useContext(UserContext);
 
-  if (session) {
+  if (userInfo) {
     return (
       <section>
         <Sticky top={0} innerZ={9999} activeClass="sticky-active">
           <Navbar />
         </Sticky>
+        <Heading
+          title="Busque sua bebida!"
+          subtitle="No futuro você vai poder cadastrar a sua bebida também, além de ter reconhecimento de rótulo por imagem!"
+          color="#fff"
+          titleSize="2.5em"
+          subtitleSize="1em"
+        />
         <GridSection />
         <S.SectionFooter>
           <Footer />
@@ -28,8 +39,18 @@ const Home = () => {
         <Sticky top={0} innerZ={9999} activeClass="sticky-active">
           <Navbar />
         </Sticky>
-        <S.SectionHero>Olá</S.SectionHero>
-        <S.SectionInformation>Olá</S.SectionInformation>
+        <Heading
+          title="Bem-vindo ao Beer-and-Wine"
+          subtitle="Existem milhares de bebidas por aí não é mesmo? Agora ficou fácil salvar todas!"
+          color="#fff"
+          titleSize="2.5em"
+          subtitleSize="1em"
+        />
+        <S.SectionHero>
+          <ImageSlider images={images} />
+        </S.SectionHero>
+
+        <S.SectionInformation></S.SectionInformation>
         <S.SectionFooter>
           <Footer />
         </S.SectionFooter>

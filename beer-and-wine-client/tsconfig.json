@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@component/*": ["src/component/*"],
+      "@component/*": ["src/components/*"],
       "@context/*": ["src/context/*"],
       "@hooks/*": ["src/hooks/*"],
       "@layout/*": ["src/layout/*"],
@@ -26,6 +26,12 @@
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/index.jsx",
+    "src/components/ImageSlider/mock.js"
+  ],
   "exclude": ["node_modules"]
 }

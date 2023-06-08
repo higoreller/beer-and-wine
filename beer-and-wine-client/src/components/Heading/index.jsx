@@ -1,22 +1,25 @@
-import { Wrapper } from "./style";
+import React from "react";
+import { StyledHeading } from "./style";
 
 const Heading = ({
-  children,
-  color = "white",
-  lineLeft = false,
-  lineBottom = false,
-  lineColor = "primary",
-  size = "medium",
-}) => (
-  <Wrapper
-    color={color}
-    lineLeft={lineLeft}
-    lineBottom={lineBottom}
-    lineColor={lineColor}
-    size={size}
-  >
-    {children}
-  </Wrapper>
-);
+  title,
+  subtitle,
+  color,
+  titleSize,
+  subtitleSize,
+  background,
+}) => {
+  return (
+    <StyledHeading
+      color={color}
+      titleSize={titleSize}
+      subtitleSize={subtitleSize}
+      background={background}
+    >
+      <h1>{title}</h1>
+      <h2>{subtitle}</h2>
+    </StyledHeading>
+  );
+};
 
 export default Heading;

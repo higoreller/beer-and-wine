@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import Fade from "react-reveal/Fade";
+import Heading from "@component/Heading";
 import Container from "../Container";
 import CardGrid from "./../CardGrid";
 import DrinkFilter from "./../DrinkFilter";
@@ -21,12 +21,6 @@ const GridSection = () => {
   return (
     <SectionWrapper id="grid-section">
       <Container>
-        <SectionHeader>
-          <Fade up>
-            <h3>Bebidas</h3>
-            <p>Suas bebidas</p>
-          </Fade>
-        </SectionHeader>
         <DrinkFilter options={options} fetchDrinks={fetchDrinks} />
         <CardGrid drinks={drinks} />
       </Container>

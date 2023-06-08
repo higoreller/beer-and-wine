@@ -9,7 +9,6 @@ export const SectionWrapper = styled.section`
   padding-bottom: 10rem;
   background-color: #06092b;
   @media only screen and (max-width: 991px) {
-    margin-top: 5rem;
     padding-bottom: 190px;
     padding-top: 140px;
   }

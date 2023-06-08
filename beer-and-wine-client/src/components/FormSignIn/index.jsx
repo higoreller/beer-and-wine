@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { Email, Lock, ErrorOutline } from "@styled-icons/material-outlined";
 import { useCallback, useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-
 import { FormLink, FormWrapper, FormLoading, FormError } from "../Form";
-import { ForgotPassword } from "./style";
 import Button from "../Button";
 import TextField from "../TextField";
 import useLoginSubmit from "@hooks/useLoginSubmit";
@@ -13,11 +9,9 @@ import { signInValidate } from "./../../utils/validations";
 
 const FormSignIn = ({ setShowModal, setShowLoginForm }) => {
   const { handleSubmit, submitHandler, register, errors, loading } =
-    useLoginSubmit(setShowModal);
+    useLoginSubmit({ setShowModal });
   const [formError, setFormError] = useState("");
   const [values, setValues] = useState({ email: "", password: "" });
-  const routes = useRouter();
-  const { push, query } = routes;
 
   const handleInput = (field, value) => {
     setValues((s) => ({ ...s, [field]: value }));

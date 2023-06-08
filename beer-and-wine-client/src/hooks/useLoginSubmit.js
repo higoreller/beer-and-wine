@@ -41,7 +41,8 @@ const useLoginSubmit = ({ setShowModal }) => {
           });
         })
         .catch((err) => {
-          notifyError(err ? err.response.data.message : err.message);
+          console.log(err);
+          notifyError(err ? err.response?.data.message : err.message);
           setLoading(false);
         });
     }
@@ -59,7 +60,7 @@ const useLoginSubmit = ({ setShowModal }) => {
         })
         .catch((err) => {
           setLoading(false);
-          notifyError(err.response.data.message);
+          notifyError(err.response?.data.message);
         });
     }
   };

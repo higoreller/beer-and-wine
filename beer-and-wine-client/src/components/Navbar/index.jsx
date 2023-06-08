@@ -6,17 +6,24 @@ import Logo from "../Logo";
 import Button from "../Button";
 import { NavbarWrapper, Menu, MobileMenu, CustomContainer } from "./style";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Modal from "../Modal";
+import { useContext } from "react";
+import { UserContext } from "@context/UserContext";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
+  const {
+    dispatch,
+    state: { userInfo },
+  } = useContext(UserContext);
   const [state, setState] = useState({
     mobileMenu: false,
     isSticky: false,
   });
-  const { data: session } = useSession();
   const [showModal, setShowModal] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(true);
+  const router = useRouter();
 
   const toggleHandler = (type) => {
     if (type === "menu") {
@@ -63,11 +70,17 @@ const Navbar = () => {
     setShowModal(true);
   };
 
-  const handleSignUpClick = (e) => {
-    e.preventDefault();
-    setShowLoginForm(false);
-    setShowModal(true);
+  const handleLogOut = () => {
+    dispatch({ type: "USER_LOGOUT" });
+    Cookies.remove("userInfo");
+    router.push("/");
   };
+
+  useEffect(() => {
+    if (!userInfo) {
+      router.push("/");
+    }
+  }, [userInfo]);
 
   return (
     <CustomContainer className={state.isSticky ? "sticky" : "navbar-container"}>
@@ -81,10 +94,10 @@ const Navbar = () => {
         <Menu>
           <Link href="#home">Home</Link>
           <Link href="#home">Minhas bebidas</Link>
-          {session ? (
-            <Button onClick={handleSignInClick}>Sair</Button>
+          {userInfo ? (
+            <Button onClick={handleLogOut}>Sair</Button>
           ) : (
-            <Button onClick={handleSignUpClick}>Entrar</Button>
+            <Button onClick={handleSignInClick}>Entrar</Button>
           )}
         </Menu>
         <MobileMenu>

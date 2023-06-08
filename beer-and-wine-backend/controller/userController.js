@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import signInToken from "../config/auth.js";
 
 const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name: username, email, password } = req.body;
 
   try {
     const isAdded = await User.findOne({ email: email });
