@@ -3,22 +3,14 @@ import media from "styled-media-query";
 import { theme } from "../../styles/theme";
 import Container from "./../../components/Container";
 
-export const Footer = styled.p`
+export const SectionBanner = styled.section`
   ${() => css`
-    font-size: ${theme.font.sizes.xsmall};
-    text-align: center;
-    align-self: end;
-  `}
-`;
-
-export const Content = styled.div`
-  ${() => css`
-    background-image: url("/img/fundosign-in.jpg");
-    background-position: 80% 20%;
-    background-size: cover;
-    display: grid;
-    align-items: center;
-    justify-content: center;
+    margin: 0 calc(-${theme.grid.gutter} / 2) ${theme.spacings.large};
+    ${media.greaterThan("medium")`
+      margin-bottom: ${theme.spacings.large};
+      position: relative;
+      z-index: ${theme.layers.base};
+    `}
   `}
 `;
 

@@ -31,7 +31,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/index.jsx",
-    "src/components/ImageSlider/mock.js"
+    "src/components/ImageSlider/mock.js",
+    "src/pages/my-drinks.jsx"
   ],
   "exclude": ["node_modules"]
 }

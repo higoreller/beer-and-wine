@@ -76,24 +76,24 @@ const Navbar = () => {
     router.push("/");
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!userInfo) {
       router.push("/");
     }
-  }, [userInfo]);
+  }, [userInfo]); */
 
   return (
     <CustomContainer className={state.isSticky ? "sticky" : "navbar-container"}>
       <NavbarWrapper>
         <Logo
-          href="#home"
+          href="/"
           url={"/img/logo.png"}
           width={250}
           onClick={handleClick}
         />
         <Menu>
-          <Link href="#home">Home</Link>
-          <Link href="#home">Minhas bebidas</Link>
+          <Link href="/">Home</Link>
+          <Link href="/my-drinks">Minhas bebidas</Link>
           {userInfo ? (
             <Button onClick={handleLogOut}>Sair</Button>
           ) : (

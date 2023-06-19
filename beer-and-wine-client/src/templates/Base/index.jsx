@@ -1,10 +1,11 @@
-import { Container } from "components/Container";
-import Footer from "components/Footer";
-import Menu from "components/Menu";
+import Footer from "@component/Footer";
+import Navbar from "@component/Navbar";
+import Heading from "@component/Heading";
+import Sticky from "react-stickynode";
 import { useContext } from "react";
 import { UserContext } from "@context/UserContext";
 
-import * as S from "./styles";
+import * as S from "./style";
 
 const Base = ({ children }) => {
   const {
@@ -12,19 +13,17 @@ const Base = ({ children }) => {
   } = useContext(UserContext);
 
   return (
-    <S.Wrapper>
-      <Container>
-        <Menu username={userInfo?.username} />
-      </Container>
+    <section>
+      <Sticky top={0} innerZ={9999} activeClass="sticky-active">
+        <Navbar />
+      </Sticky>
 
       <S.Content>{children}</S.Content>
 
       <S.SectionFooter>
-        <Container>
-          <Footer />
-        </Container>
+        <Footer />
       </S.SectionFooter>
-    </S.Wrapper>
+    </section>
   );
 };
 

@@ -28,8 +28,8 @@ const Footer = () => {
           />
           <Content>
             <Column>
-              <Link href="mailto:cogtec.mail@gmail.com">
-                cogtec.mail@gmail.com
+              <Link href="mailto:higoreller29@gmail.com">
+                higoreller29@gmail.com
               </Link>
             </Column>
 
@@ -54,11 +54,11 @@ const Footer = () => {
 
             <Column>
               <nav aria-labelledby="footer resources">
-                <Link href="#home" onClick={(e) => handleClick(e, "home")}>
+                <Link href="/" onClick={(e) => handleClick(e, "home")}>
                   Home
                 </Link>
                 <Link
-                  href="#keyFeatures"
+                  href="/my-drinks"
                   onClick={(e) => handleClick(e, "grid-section")}
                 >
                   Bebidas

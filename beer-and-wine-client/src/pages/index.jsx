@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import Home from "./../templates/Home";
+import Home from "../templates/Home";
 
-export default function AppCreative() {
+export default function Index() {
   return (
     <Fragment>
       <Home />

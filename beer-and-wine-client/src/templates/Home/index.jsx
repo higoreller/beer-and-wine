@@ -14,48 +14,27 @@ const Home = () => {
     state: { userInfo },
   } = useContext(UserContext);
 
-  if (userInfo) {
-    return (
-      <section>
-        <Sticky top={0} innerZ={9999} activeClass="sticky-active">
-          <Navbar />
-        </Sticky>
-        <Heading
-          title="Busque sua bebida!"
-          subtitle="No futuro você vai poder cadastrar a sua bebida também, além de ter reconhecimento de rótulo por imagem!"
-          color="#fff"
-          titleSize="2.5em"
-          subtitleSize="1em"
-        />
-        <GridSection />
-        <S.SectionFooter>
-          <Footer />
-        </S.SectionFooter>
-      </section>
-    );
-  } else {
-    return (
-      <section>
-        <Sticky top={0} innerZ={9999} activeClass="sticky-active">
-          <Navbar />
-        </Sticky>
-        <Heading
-          title="Bem-vindo ao Beer-and-Wine"
-          subtitle="Existem milhares de bebidas por aí não é mesmo? Agora ficou fácil salvar todas!"
-          color="#fff"
-          titleSize="2.5em"
-          subtitleSize="1em"
-        />
-        <S.SectionHero>
-          <ImageSlider images={images} />
-        </S.SectionHero>
+  return (
+    <section>
+      <Sticky top={0} innerZ={9999} activeClass="sticky-active">
+        <Navbar />
+      </Sticky>
+      <Heading
+        title="Bem-vindo ao Beer-and-Wine"
+        subtitle="Existem milhares de bebidas por aí não é mesmo? Agora ficou fácil salvar todas!"
+        color="#fff"
+        titleSize="2.5em"
+        subtitleSize="1em"
+      />
+      <S.SectionHero>
+        <ImageSlider images={images} />
+      </S.SectionHero>
 
-        <S.SectionInformation></S.SectionInformation>
-        <S.SectionFooter>
-          <Footer />
-        </S.SectionFooter>
-      </section>
-    );
-  }
+      <S.SectionInformation></S.SectionInformation>
+      <S.SectionFooter>
+        <Footer />
+      </S.SectionFooter>
+    </section>
+  );
 };
 export default Home;
