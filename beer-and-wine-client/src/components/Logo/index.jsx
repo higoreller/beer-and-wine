@@ -1,3 +1,4 @@
+import React from "react";
 import { LogoWrapper } from "./style";
 import Image from "next/image";
 

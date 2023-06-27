@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link";
 import { Wrapper, Content, Column, Copyright, SectionFooter } from "./style";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";

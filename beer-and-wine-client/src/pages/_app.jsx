@@ -1,14 +1,15 @@
 import "./../styles/globals.css";
-import type { AppProps } from "next/app";
-import { UserProvider } from "./../context/UserContext";
+import React from 'react'
+import { UserProvider } from "../context/UserContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { render } from "@testing-library/react";
+import * as rtl from "@testing-library/react";
 
 export default function App({
   Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
+  pageProps,
+}) {
   return (
     <UserProvider>
       <Component {...pageProps} />
@@ -16,9 +17,11 @@ export default function App({
   );
 }
 
-const customRender = (ui: any, options: any) =>
+const customRender = (ui, options) =>
   render(ui, { wrapper: UserProvider, ...options });
 
-export * from "@testing-library/react";
+export const fireEvent = rtl.fireEvent;
+export const screen = rtl.screen;
+export const waitFor = rtl.waitFor;
 
 export { customRender as render };
