@@ -1,42 +1,21 @@
 import { darken } from "polished";
 import styled, { css } from "styled-components";
-
-const customTheme = {
-  font: {
-    sizes: {
-      xsmall: "12px",
-      small: "14px",
-      medium: "16px",
-    },
-  },
-  spacings: {
-    xxsmall: "4px",
-    medium: "16px",
-    xlarge: "32px",
-  },
-  border: {
-    radius: "4px",
-  },
-  colors: {
-    primary: "#3e3e3e",
-    white: "#ffffff",
-  },
-};
+import { theme } from "@styles/theme";
 
 const wrapperModifiers = {
   small: () => css`
     height: 3rem;
-    font-size: ${customTheme.font.sizes.xsmall};
+    font-size: ${theme.font.sizes.xsmall};
   `,
   medium: () => css`
-    height: 4rem;
-    font-size: ${customTheme.font.sizes.small};
-    padding: ${customTheme.spacings.xxsmall} ${customTheme.spacings.medium};
+    height: 3rem;
+    font-size: ${theme.font.sizes.xsmall};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
   `,
   large: () => css`
     height: 5rem;
-    font-size: ${customTheme.font.sizes.medium};
-    padding: ${customTheme.spacings.xxsmall} ${customTheme.spacings.xlarge};
+    font-size: ${theme.font.sizes.medium};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `,
   fullWidth: () => css`
     width: 100%;
@@ -45,15 +24,15 @@ const wrapperModifiers = {
     svg {
       width: 1.5rem;
       & + span {
-        margin-left: ${customTheme.spacings.xxsmall};
+        margin-left: ${theme.spacings.xxsmall};
       }
     }
   `,
   minimal: () => css`
     background: none;
-    color: ${customTheme.colors.primary};
+    color: ${theme.colors.primary};
     &:hover {
-      color: ${darken(0.1, customTheme.colors.primary)};
+      color: ${darken(0.1, theme.colors.primary)};
     }
   `,
   disabled: () => css`
@@ -70,11 +49,11 @@ export const Wrapper = styled.button`
     align-items: center;
     justify-content: center;
     background: linear-gradient(180deg, #49e2a0 0%, #59cd60 50%);
-    color: ${customTheme.colors.white};
+    color: ${theme.colors.white};
     border: 0;
     cursor: pointer;
-    border-radius: ${customTheme.border.radius};
-    padding: ${customTheme.spacings.xxsmall};
+    border-radius: ${theme.border.radius};
+    padding: ${theme.spacings.xxsmall};
     text-decoration: none;
 
     &:focus {
