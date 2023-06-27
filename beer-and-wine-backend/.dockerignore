@@ -1,0 +1,11 @@
+#dependencies
+/node_modules
+
+.git/
+.vscode/
+node_modules/
+client/node_modules/
+npm-debug
+docker-compose*.yml
+.cache
+.next

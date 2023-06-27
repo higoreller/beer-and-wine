@@ -12,6 +12,10 @@ app.use(express.json({ limit: "4mb" }));
 app.use(helmet());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("App works properly!");
+});
+
 app.use("/api/user/", userRoutes);
 
 const PORT = process.env.PORT || 5000;
